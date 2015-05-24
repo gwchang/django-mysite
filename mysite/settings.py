@@ -68,16 +68,22 @@ COMPRESS_CSS_FILTERS = [
   'compressor.filters.css_default.CssAbsoluteFilter',
 ]
 
-TEMPLATE_LOADERS = [
-  'hamlpy.template.loaders.HamlPyFilesystemLoader',
-  'hamlpy.template.loaders.HamlPyAppDirectoriesLoader',
-]
+TEMPLATE_LOADERS = (
+  #'hamlpy.template.loaders.HamlPyFilesystemLoader',
+  #'hamlpy.template.loaders.HamlPyAppDirectoriesLoader',
+  ('pyjade.ext.django.Loader',(
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+  )),
+)
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
+        #'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [],
+        #'APP_DIRS': True,
+        'APP_DIRS': False,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -85,12 +91,12 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            #'loaders': [
-            #  'django.template.loaders.filesystem.Loader',
-            #  'django.template.loaders.app_directories.Loader',
-            #  'hamlpy.template.loaders.HamlPyFilesystemLoader',
-            #  'hamlpy.template.loaders.HamlPyAppDirectoriesLoader',
-            #]
+            'loaders': [
+              ('pyjade.ext.django.Loader',(
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+              )),
+            ],
         },
     },
 ]
