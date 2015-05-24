@@ -1,5 +1,7 @@
+$link-color: orange;
+
 li a {
-  color: green;
+  color: $link-color;
 }
 
 body {

@@ -54,15 +54,19 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'mysite.urls'
 
-COMPRESS_PRECOMPILERS = (
-  ('text/scss', 'sass --scss {infile} {outfile}'),
-)
-
 STATICFILES_FINDERS = (
   'django.contrib.staticfiles.finders.FileSystemFinder',
   'django.contrib.staticfiles.finders.AppDirectoriesFinder',
   'compressor.finders.CompressorFinder',
 )
+
+COMPRESS_PRECOMPILERS = (
+  ('text/scss', 'sass --scss {infile} {outfile}'),
+)
+
+COMPRESS_CSS_FILTERS = [
+  'compressor.filters.css_default.CssAbsoluteFilter',
+]
 
 TEMPLATE_LOADERS = [
   'hamlpy.template.loaders.HamlPyFilesystemLoader',
@@ -126,3 +130,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 COMPRESS_ROOT = STATIC_ROOT
+#COMPRESS_OUTPUT_DIR = ''
+COMPRESS_ENABLED = True
+
