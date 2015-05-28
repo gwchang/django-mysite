@@ -51,7 +51,7 @@ class Command(BaseCommand):
           file_text = asset_node['asset'],
           title_text = asset_node['title'],
           link_url = asset_node['link'],
-          price_decimal = asset_node['price'],
+          price_text = asset_node.get('price',''),
           collection = c)
         a.save()
 

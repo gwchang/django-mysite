@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('file_text', models.CharField(max_length=200)),
                 ('title_text', models.CharField(max_length=200)),
                 ('link_url', models.CharField(max_length=300)),
-                ('price_decimal', models.DecimalField(max_digits=8, decimal_places=2)),
+                ('price_text', models.CharField(max_length=50)),
             ],
         ),
         migrations.CreateModel(
@@ -29,5 +29,10 @@ class Migration(migrations.Migration):
                 ('description_text', models.CharField(max_length=2000)),
                 ('homepage_url', models.CharField(max_length=300)),
             ],
+        ),
+        migrations.AddField(
+            model_name='asset',
+            name='collection',
+            field=models.ForeignKey(default=0, to='curations.Collection'),
         ),
     ]
