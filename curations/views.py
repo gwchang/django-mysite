@@ -18,3 +18,8 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
   model = Collection
   template_name = 'curations/detail.jade'
+
+  def get_context_data(self, **kwargs):
+    context = super(DetailView, self).get_context_data(**kwargs)
+    context['assets_list'] = Asset.objects.filter(collection=self.get_object().id)
+    return context

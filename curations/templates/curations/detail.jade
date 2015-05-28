@@ -2,3 +2,9 @@ h1= collection.title_text
 h2= collection.author_text
 body
   = collection.description_text
+  
+  if assets_list
+    ul
+      - for asset in assets_list
+        li
+          a(href=asset.link_url)= asset.title_text
