@@ -13,14 +13,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Asset',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', primary_key=True, serialize=False)),
+                ('id', models.AutoField(serialize=False, verbose_name='ID', primary_key=True, auto_created=True)),
+                ('file_text', models.CharField(max_length=200)),
                 ('title_text', models.CharField(max_length=200)),
+                ('link_url', models.CharField(max_length=300)),
+                ('price_decimal', models.DecimalField(max_digits=8, decimal_places=2)),
             ],
         ),
         migrations.CreateModel(
             name='Collection',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', primary_key=True, serialize=False)),
+                ('id', models.AutoField(serialize=False, verbose_name='ID', primary_key=True, auto_created=True)),
                 ('title_text', models.CharField(max_length=200)),
                 ('author_text', models.CharField(max_length=200)),
                 ('description_text', models.CharField(max_length=2000)),

@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'compressor',
     'polls',
-    'fancy',
+    'curations',
 )
 
 MIDDLEWARE_CLASSES = (
