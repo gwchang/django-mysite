@@ -11,8 +11,12 @@ class Command(BaseCommand):
 
   def handle(self, *args, **options):
     # Delete all records
-    Collection.objects.all().delete()
-    print('Delete all records in Collection.')
+    if True:
+      Collection.objects.all().delete()
+      print('Delete all records in Collection.')
+      
+      Asset.objects.all().delete()
+      print('Delete all records in Asset.')
 
     # Parse yaml file
     yaml_file = options['yaml_file']
@@ -41,5 +45,14 @@ class Command(BaseCommand):
           description_text  = node['description'],
           homepage_url      = node['link'])
       c.save()
+
+      for asset_node in node['images']:
+        a = Asset( 
+          file_text = asset_node['asset'],
+          title_text = asset_node['title'],
+          link_url = asset_node['link'],
+          price_decimal = asset_node['price'],
+          collection = c)
+        a.save()
 
       print(c.id)
