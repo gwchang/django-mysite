@@ -1,0 +1,17 @@
+- load staticfiles
+- load compress
+
+| {% compress css %}
+link(rel="stylesheet", type="text/scss", href="{% static 'curations/style.scss' %}")
+| {% endcompress %}
+
+if curations_list
+  ul
+    - for curation in curations_list
+      li
+        b
+          a(href="{% url 'curations:detail' curation.id %}")= curation.title_text
+        |  by 
+        = curation.author_text
+else
+  p No curations are available.
